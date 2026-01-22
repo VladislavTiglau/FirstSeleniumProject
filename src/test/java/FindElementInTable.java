@@ -49,7 +49,35 @@ public class FindElementInTable {
 
         WebElement last = driver.findElement(By.cssSelector("#customers tr:nth-child(2) td:last-child"));
         System.out.println(last.getText());
+    }
 
+    @Test
+    public void findXpathInTable() {
+        List<WebElement> rows = driver.findElements(By.xpath("//tr"));
+        System.out.println(rows.size());
 
+        WebElement germany = driver.findElement(By.xpath("//*[@id='customers']//tr[2]"));
+        System.out.println(germany.getText());
+        System.out.println("*******************");
+
+        WebElement maria = driver.findElement(By.xpath("//*[@id='customers']//tr[2]//td[2]"));
+        System.out.println(maria.getText());
+        System.out.println("*******************");
+
+        WebElement last = driver.findElement(By.xpath("//*[@id='customers']//tr[2]//td[last()]"));
+        System.out.println(last.getText());
+
+    }
+    @Test
+    public void findElementByXpathFamily() {
+
+        driver.findElement(By.xpath("//h1/parent::*"));
+        driver.findElement(By.xpath("//ha/parent::div"));
+        driver.findElement(By.xpath("//h1/.."));
+
+        //ancestor
+        driver.findElement(By.xpath("//h1/ancestor::*")); //html
+        driver.findElement(By.xpath("//h1/ancestor::div")); //two steps above
+        driver.findElement(By.xpath("//h1/ancestor::div[2]")); //two steps above
     }
 }
